@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <color name="colorAppTheme">#032541</color>
+    <color name="colorAppTheme0">#00032541</color>
+    <color name="colorAppTheme70">#B3032541</color>
+    <color name="colorAppTheme75">#BF032541</color>
+    <color name="colorAppTheme80">#CC032541</color>
+    <color name="colorAppTheme84">#D6032541</color>
+    <color name="colorAppTheme90">#E6032541</color>
+    <color name="colorAppTheme92">#EB032541</color>
+    <color name="colorAppTheme95">#F2032541</color>
+    <color name="colorVividCyan">#03DAC5</color>
+    <color name="colorLightGreen">#90cea1</color>
+    <color name="colorLightBlue">#01b4e4</color>
+    <color name="colorDarkBlue">#0d253f</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorBlack20">#5d686b</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorWhite84">#D6FFFFFF</color>
+    <color name="colorWhite74">#BDFFFFFF</color>
+    <color name="colorGray">#7C7C7C</color>
+    <color name="colorLightGray">#BD7C7C7C</color>
+    <color name="colorThinGray">#407C7C7C</color>
+    <color name="colorDarkGray">#454545</color>
+    <color name="colorUnselectedText">#DCDCDC</color>
+    <color name="colorDarkBG">#081C22</color>
+    <color name="colorDarkGreen">#18C872</color>
+    <color name="colorDullGreen">#B31A3D27</color>
+    <color name="colorDarkYellow">#D6D209</color>
+    <color name="colorDullYellow">#B3504E1F</color>
+    <color name="colorDarkRed">#D60909</color>
+    <color name="colorDullRed">#B35C2525</color>
+    <color name="colorHintText">#5d6480</color>
+    <color name="colorEditText">#161716</color>
+
+    <!--    #1abc9c-->
+</resources>

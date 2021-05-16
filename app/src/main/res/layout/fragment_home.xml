@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/root_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/dynamic_bg_img"
+                android:layout_width="match_parent"
+                android:layout_height="184dp"
+                android:scaleType="fitXY"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/gradient_layer_bg_img"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/app_theme_gradient_horizontal"
+                app:layout_constraintBottom_toBottomOf="@id/dynamic_bg_img"
+                app:layout_constraintTop_toTopOf="@id/dynamic_bg_img"
+                tools:ignore="ContentDescription" />
+
+
+            <TextView
+                android:id="@+id/welcome_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/source_sans_pro_extra_bold"
+                android:text="@string/welcome"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/search_bar"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/source_sans_pro_semi_bold"
+                android:maxLines="1"
+                android:text="@string/tag_line"
+                android:textColor="@color/colorWhite"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@id/search_bar"
+                app:layout_constraintStart_toStartOf="@id/search_bar"
+                app:layout_constraintTop_toBottomOf="@id/welcome_txt" />
+
+            <AutoCompleteTextView
+                android:id="@+id/search_bar"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/bg_white_rounded18_filled"
+                android:completionThreshold="2"
+                android:dropDownAnchor="@id/search_bar"
+                android:dropDownSelector="@color/colorThinGray"
+                android:fontFamily="@font/source_sans_pro_regular"
+                android:hint="@string/multi_search"
+                android:inputType="text"
+                android:textColor="@color/colorGray"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/dynamic_bg_img"
+                tools:ignore="Autofill" />
+
+            <Button
+                android:id="@+id/search_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_alignEnd="@id/search_bar"
+                android:background="@drawable/search_btn_gradient"
+                android:text="@string/search"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/search_bar"
+                app:layout_constraintEnd_toEndOf="@id/search_bar"
+                app:layout_constraintTop_toTopOf="@id/search_bar" />
+
+
+            <TextView
+                android:id="@+id/trending_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/source_sans_pro_semi_bold"
+                android:text="@string/trending"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dynamic_bg_img" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/trending_tabLayout"
+                style="@style/CustomTabLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_hollow_app_theme_rounded"
+                app:layout_constraintStart_toStartOf="@id/trending_txt"
+                app:layout_constraintTop_toBottomOf="@id/trending_txt"
+                app:tabIndicator="@drawable/bg_app_theme_rounded14"
+                app:tabIndicatorColor="@color/colorAppTheme"
+                app:tabIndicatorGravity="stretch"
+                app:tabMode="auto"
+                app:tabRippleColor="@null"
+                app:tabSelectedTextColor="@color/colorVividCyan"
+                app:tabTextColor="@color/colorAppTheme">
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/trending_today"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/today" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/trending_this_week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/this_week" />
+            </com.google.android.material.tabs.TabLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/trending_RecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toStartOf="@id/trending_progressBar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/trending_tabLayout" />
+
+            <include
+                android:id="@+id/trending_progressBar"
+                layout="@layout/wave_progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/trending_RecyclerView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/trending_RecyclerView" />
+
+            <TextView
+                android:id="@+id/what_popular_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:fontFamily="@font/source_sans_pro_semi_bold"
+                android:text="@string/what_s_popular"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@id/trending_txt"
+                app:layout_constraintTop_toBottomOf="@id/trending_RecyclerView" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/whats_popular_tabLayout"
+                style="@style/CustomTabLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_hollow_app_theme_rounded"
+                app:layout_constraintStart_toStartOf="@id/trending_txt"
+                app:layout_constraintTop_toBottomOf="@id/what_popular_txt"
+                app:tabIndicator="@drawable/bg_app_theme_rounded14"
+                app:tabIndicatorColor="@color/colorAppTheme"
+                app:tabIndicatorGravity="stretch"
+                app:tabMode="auto"
+                app:tabRippleColor="@null"
+                app:tabSelectedTextColor="@color/colorVividCyan"
+                app:tabTextColor="@color/colorAppTheme">
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/whats_popular_streaming"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/streaming" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/whats_popular_ontv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ontv" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/whats_popular_in_theaters"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/in_theaters" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/whats_popular_upcoming"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/upcoming" />
+            </com.google.android.material.tabs.TabLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/whats_popular_RecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toStartOf="@id/popular_progressBar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/whats_popular_tabLayout" />
+
+            <include
+                android:id="@+id/popular_progressBar"
+                layout="@layout/wave_progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/whats_popular_RecyclerView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/whats_popular_RecyclerView" />
+
+            <TextView
+                android:id="@+id/top_rated_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:fontFamily="@font/source_sans_pro_semi_bold"
+                android:text="@string/top_rated"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@id/trending_txt"
+                app:layout_constraintTop_toBottomOf="@id/whats_popular_RecyclerView" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/top_rated_tabLayout"
+                style="@style/CustomTabLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_hollow_app_theme_rounded"
+                app:layout_constraintStart_toStartOf="@id/trending_txt"
+                app:layout_constraintTop_toBottomOf="@id/top_rated_txt"
+                app:tabIndicator="@drawable/bg_app_theme_rounded14"
+                app:tabIndicatorColor="@color/colorAppTheme"
+                app:tabIndicatorGravity="stretch"
+                app:tabMode="auto"
+                app:tabRippleColor="@null"
+                app:tabSelectedTextColor="@color/colorVividCyan"
+                app:tabTextColor="@color/colorAppTheme">
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/top_rated_movies"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/movies" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/top_rated_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_caps" />
+            </com.google.android.material.tabs.TabLayout>
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:alpha="0.6"
+                android:scaleType="fitXY"
+                android:src="@drawable/recycler_view_background"
+                app:layout_constraintBottom_toBottomOf="@id/top_rated_RecyclerView"
+                app:layout_constraintTop_toTopOf="@id/top_rated_RecyclerView"
+                tools:ignore="ContentDescription" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/top_rated_RecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toStartOf="@id/top_rated_progressBar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/top_rated_tabLayout" />
+
+            <include
+                android:id="@+id/top_rated_progressBar"
+                layout="@layout/wave_progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/top_rated_RecyclerView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/top_rated_RecyclerView" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/inner_root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="40dp"
+    app:cardCornerRadius="24dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="32dp">
+
+        <ImageView
+            android:id="@+id/logo_tmdb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_tmdb_small_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/txt_user_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:fontFamily="@font/source_sans_pro_regular"
+            android:text="@string/user_id"
+            android:textColor="@color/colorGray"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/logo_tmdb" />
+
+        <EditText
+            android:id="@+id/user_ID"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLength="18"
+            android:textColor="@color/colorEditText"
+            android:textSize="14sp"
+            android:theme="@style/LoginEditTextTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_user_id"
+            tools:ignore="Autofill,LabelFor,TextFields" />
+
+        <TextView
+            android:id="@+id/txt_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/source_sans_pro_regular"
+            android:text="@string/password"
+            android:textColor="@color/colorGray"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_ID" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:maxLength="12"
+            android:paddingEnd="40dp"
+            android:textColor="@color/colorEditText"
+            android:textSize="14sp"
+            android:theme="@style/LoginEditTextTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_password"
+            tools:ignore="Autofill,LabelFor" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/password_eye"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/password"
+            app:lottie_progress="1"
+            app:lottie_rawRes="@raw/password_eye_lottie" />
+
+        <TextView
+            android:id="@+id/forgot_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="@string/forgot_password"
+            android:textColor="@color/colorLightBlue"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/password" />
+
+        <TextView
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/search_btn_gradient"
+            android:elevation="2dp"
+            android:fontFamily="@font/source_sans_pro_semi_bold"
+            android:paddingStart="60dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="60dp"
+            android:paddingBottom="12dp"
+            android:text="@string/login"
+            android:textAllCaps="true"
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/forgot_password" />
+
+        <View
+            android:id="@+id/division_line"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/colorThinGray"
+            app:layout_constraintBottom_toBottomOf="@id/txt_or"
+            app:layout_constraintEnd_toStartOf="@id/txt_or"
+            app:layout_constraintStart_toStartOf="@id/login"
+            app:layout_constraintTop_toTopOf="@id/txt_or" />
+
+        <TextView
+            android:id="@+id/txt_or"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/source_sans_pro_regular"
+            android:text="@string/or"
+            android:textColor="@color/colorGray"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="@id/login"
+            app:layout_constraintStart_toStartOf="@id/login"
+            app:layout_constraintTop_toBottomOf="@id/login" />
+
+        <View
+            android:id="@+id/division_line_right"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="8dp"
+            android:background="@color/colorThinGray"
+            app:layout_constraintBottom_toBottomOf="@id/txt_or"
+            app:layout_constraintEnd_toEndOf="@id/login"
+            app:layout_constraintStart_toEndOf="@id/txt_or"
+            app:layout_constraintTop_toTopOf="@id/txt_or" />
+
+        <TextView
+            android:id="@+id/login_with_google"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/source_sans_pro_regular"
+            android:gravity="center"
+            android:text="@string/login_with_google"
+            android:textColor="@color/colorDarkGray"
+            android:textSize="14sp"
+            app:drawableStartCompat="@drawable/google_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_or" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

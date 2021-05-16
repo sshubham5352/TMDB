@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="24dp"
+    android:layout_marginEnd="24dp">
+
+    <!-- image should maintain a ratio of (Height/ width) = 1.5  -->
+    <ImageView
+        android:id="@+id/low_res_image"
+        android:layout_width="400dp"
+        android:layout_height="600dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/placeholder_image_loading"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/high_res_image"
+        android:layout_width="400dp"
+        android:layout_height="600dp"
+        android:scaleType="centerCrop"
+        tools:ignore="ContentDescription" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/high_res_image"
+        android:layout_alignEnd="@id/high_res_image"
+        android:layout_margin="8dp"
+        android:progressTint="@color/colorAppTheme" />
+
+</RelativeLayout>
+
+
+    <!-- image should maintain a ratio of 1.5 (Height/ width) -->

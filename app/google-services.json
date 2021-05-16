@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "887534286438",
+    "project_id": "tmdb-3b2cd",
+    "storage_bucket": "tmdb-3b2cd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:887534286438:android:0d03d5d8877bfa50025fa7",
+        "android_client_info": {
+          "package_name": "com.app.manoranjan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "887534286438-ql2r81f0av5ij8158ughiufiagh3she5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLxQBioTFNmsD1rLsl4qFva-1KTbOiUvk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "887534286438-ql2r81f0av5ij8158ughiufiagh3she5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/root_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants">
+
+            <ImageView
+                android:id="@+id/backdrop_img"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_marginStart="63dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/placeholder_image_loading"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+
+            <View
+                android:id="@+id/gradient_layer_1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/backdrop_img"
+                app:layout_constraintTop_toTopOf="@id/backdrop_img" />
+
+            <View
+                android:id="@+id/gradient_layer_2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/backdrop_img"
+                app:layout_constraintTop_toTopOf="@id/backdrop_img" />
+
+            <View
+                android:id="@+id/gradient_layer_3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/backdrop_img"
+                app:layout_constraintEnd_toEndOf="@id/poster_img_holder"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/poster_img_holder"
+                android:layout_width="126dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:elevation="8dp"
+                android:onClick="openDialogOriginalImage"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/backdrop_img"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/poster_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/placeholder_image_loading"
+                    tools:ignore="ContentDescription" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/tv_show_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="16dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/source_sans_pro_bold"
+                android:maxLines="1"
+                android:text="@string/na"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@id/release_year"
+                app:layout_constraintStart_toEndOf="@id/poster_img_holder"
+                app:layout_constraintTop_toTopOf="@id/poster_img_holder" />
+
+
+            <TextView
+                android:id="@+id/release_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:fontFamily="@font/source_sans_pro_semi_bold"
+                android:textColor="@color/colorWhite74"
+                android:textSize="18sp"
+                app:layout_constraintBaseline_toBaselineOf="@id/tv_show_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_show_title" />
+
+
+            <TextView
+                android:id="@+id/genres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="4dp"
+                android:fontFamily="@font/source_sans_pro_semi_bold"
+                android:paddingEnd="4dp"
+                android:textColor="@color/colorWhite84"
+                android:textSize="10sp"
+                app:drawableEndCompat="@drawable/circle_separation"
+                app:layout_constraintStart_toStartOf="@id/tv_show_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_show_title" />
+
+            <TextView
+                android:id="@+id/country_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="4dp"
+                android:fontFamily="@font/source_sans_pro_semi_bold"
+                android:paddingEnd="4dp"
+                android:textColor="@color/colorWhite84"
+                android:textSize="10sp"
+                android:visibility="gone"
+                app:drawableEndCompat="@drawable/circle_separation"
+                app:layout_constraintBaseline_toBaselineOf="@id/genres"
+                app:layout_constraintStart_toEndOf="@id/genres" />
+
+            <TextView
+                android:id="@+id/running_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/source_sans_pro_semi_bold"
+                android:text="@string/na_in_brackets"
+                android:textColor="@color/colorWhite84"
+                android:textSize="10sp"
+                app:layout_constraintBaseline_toBaselineOf="@id/genres"
+                app:layout_constraintStart_toEndOf="@id/country_code" />
+
+            <include
+                android:id="@+id/user_score"
+                layout="@layout/user_score"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:layout_constraintBottom_toTopOf="@id/tag_line"
+                app:layout_constraintStart_toEndOf="@id/poster_img_holder"
+                app:layout_constraintTop_toBottomOf="@id/genres" />
+
+            <TextView
+                android:id="@+id/txt_user_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/source_sans_pro_semi_bold"
+                android:text="@string/user_score"
+                android:textColor="@color/colorWhite"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@id/user_score"
+                app:layout_constraintStart_toEndOf="@id/user_score"
+                app:layout_constraintTop_toTopOf="@id/user_score" />
+
+            <View
+                android:id="@+id/mark_as_fav"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/mark_as_fav_icon"
+                app:layout_constraintBottom_toBottomOf="@id/txt_user_score"
+                app:layout_constraintStart_toEndOf="@id/txt_user_score"
+                app:layout_constraintTop_toTopOf="@id/txt_user_score" />
+
+            <View
+                android:id="@+id/add_to_watchlist"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/add_to_watchlist_icon"
+                app:layout_constraintBottom_toBottomOf="@id/txt_user_score"
+                app:layout_constraintStart_toEndOf="@id/mark_as_fav"
+                app:layout_constraintTop_toTopOf="@id/txt_user_score" />
+
+            <View
+                android:id="@+id/rate_it"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/rate_it_icon"
+                app:layout_constraintBottom_toBottomOf="@id/txt_user_score"
+                app:layout_constraintStart_toEndOf="@id/add_to_watchlist"
+                app:layout_constraintTop_toTopOf="@id/txt_user_score" />
+
+            <TextView
+                android:id="@+id/tag_line"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_marginBottom="16dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/source_sans_pro_bold_it"
+                android:maxLines="2"
+                android:text="@string/na"
+                android:textColor="@color/colorWhite74"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/poster_img_holder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tv_show_title" />
+
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/backdrop_img"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/backdrop_img" />
+
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintTop_toBottomOf="@id/backdrop_img"
+                app:tabIndicatorColor="@color/colorGray"
+                app:tabTextColor="@color/colorUnselectedText" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/details_view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tab_layout" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>
+
