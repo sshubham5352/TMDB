@@ -191,7 +191,7 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginStart="8dp"
-                android:background="@drawable/rate_it_icon"
+                android:background="@drawable/icon_rating"
                 app:layout_constraintBottom_toBottomOf="@id/txt_user_score"
                 app:layout_constraintStart_toEndOf="@id/add_to_watchlist"
                 app:layout_constraintTop_toTopOf="@id/txt_user_score" />

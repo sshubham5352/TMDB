@@ -8,7 +8,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/app_theme_gradient_2_vertical"
         android:padding="32dp"
-        tools:context=".activities.ManualSignInActivity">
+        tools:context="com.app.tmdb.activities.ManualSignInActivity">
 
         <ImageView
             android:id="@+id/logo_tmdb"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.app.manoranjan">
+    package="com.app.tmdb">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,16 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.SignInActivity"
+            android:name="com.app.tmdb.activities.SignInActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.ManualSignInActivity"
+            android:name="com.app.tmdb.activities.ManualSignInActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name="com.app.tmdb.activities.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Splash"
+            android:name="com.app.tmdb.activities.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,10 +30,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.MovieDetailsActivity"
+            android:name="com.app.tmdb.activities.MovieDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.TvShowDetailsActivity"
+            android:name="com.app.tmdb.activities.TvShowDetailsActivity"
             android:screenOrientation="portrait" />
 
         <!-- facebook meta data and activities -->

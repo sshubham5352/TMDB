@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context=".activities.MainActivity">
+    tools:context="com.app.tmdb.activities.MainActivity">
 
     <FrameLayout
         android:id="@+id/frameContainer"
