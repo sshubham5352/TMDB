@@ -142,35 +142,28 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         progressDialog.dismiss();
     }
 
-
     @Override
     protected void onPause() {
         super.onPause();
         progressDialog.dismiss();
     }
 
-
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()) {
-            case R.id.sign_in_with_google:
-                progressDialog.show();
-                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-                startActivityForResult(signInIntent, RC_GOOGLE_SIGNUP);
-                break;
-            case R.id.sign_in_with_facebook:
-                progressDialog.show();
-                LoginManager.getInstance().logInWithReadPermissions(this, Collections.singletonList("public_profile"));
-                break;
-            case R.id.manual_sign_in:
-                startActivity(new Intent(SignInActivity.this, ManualSignInActivity.class));
-                break;
-            case R.id.login:
-                loginDialog = new UserLoginDialog(this, this);
-                loginDialog.setContentView();
-                loginDialog.show();
-                break;
+        int id = v.getId();
+        if (id == R.id.sign_in_with_google) {
+            progressDialog.show();
+            Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+            startActivityForResult(signInIntent, RC_GOOGLE_SIGNUP);
+        } else if (id == R.id.sign_in_with_facebook) {
+            progressDialog.show();
+            LoginManager.getInstance().logInWithReadPermissions(this, Collections.singletonList("public_profile"));
+        } else if (id == R.id.manual_sign_in) {
+            startActivity(new Intent(SignInActivity.this, ManualSignInActivity.class));
+        } else if (id == R.id.login) {
+            loginDialog = new UserLoginDialog(this, this);
+            loginDialog.show();
         }
     }
 

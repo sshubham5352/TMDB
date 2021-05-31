@@ -28,10 +28,10 @@
             android:id="@+id/txt_user_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="40dp"
             android:fontFamily="@font/source_sans_pro_regular"
             android:text="@string/user_id"
-            android:textColor="@color/colorGray"
+            android:textColor="@color/colorSecondaryText"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/logo_tmdb" />
@@ -57,7 +57,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/source_sans_pro_regular"
             android:text="@string/password"
-            android:textColor="@color/colorGray"
+            android:textColor="@color/colorSecondaryText"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/user_ID" />
@@ -119,40 +119,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/forgot_password" />
 
-        <View
-            android:id="@+id/division_line"
+        <include
+            android:id="@+id/division_line_or"
+            layout="@layout/division_or_layout"
             android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginEnd="8dp"
-            android:background="@color/colorThinGray"
-            app:layout_constraintBottom_toBottomOf="@id/txt_or"
-            app:layout_constraintEnd_toStartOf="@id/txt_or"
-            app:layout_constraintStart_toStartOf="@id/login"
-            app:layout_constraintTop_toTopOf="@id/txt_or" />
-
-        <TextView
-            android:id="@+id/txt_or"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:fontFamily="@font/source_sans_pro_regular"
-            android:text="@string/or"
-            android:textColor="@color/colorGray"
-            android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="@id/login"
             app:layout_constraintStart_toStartOf="@id/login"
             app:layout_constraintTop_toBottomOf="@id/login" />
-
-        <View
-            android:id="@+id/division_line_right"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginStart="8dp"
-            android:background="@color/colorThinGray"
-            app:layout_constraintBottom_toBottomOf="@id/txt_or"
-            app:layout_constraintEnd_toEndOf="@id/login"
-            app:layout_constraintStart_toEndOf="@id/txt_or"
-            app:layout_constraintTop_toTopOf="@id/txt_or" />
 
         <TextView
             android:id="@+id/login_with_google"
@@ -168,8 +143,7 @@
             app:drawableStartCompat="@drawable/google_logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txt_or" />
-
+            app:layout_constraintTop_toBottomOf="@id/division_line_or" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

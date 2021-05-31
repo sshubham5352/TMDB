@@ -5,8 +5,8 @@ import android.content.Context;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,12 +33,13 @@ public class UserLoginDialog extends Dialog {
     public UserLoginDialog(@NonNull Context context, UserLoginInterface userLoginInterface) {
         super(context);
         mInterface = userLoginInterface;
+        setContentView();
     }
 
     public void setContentView() {
         super.setContentView(R.layout.dialog_user_login);
         Objects.requireNonNull(this.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
-        getWindow().getAttributes().width = ViewGroup.LayoutParams.MATCH_PARENT;
+        getWindow().getAttributes().width = LinearLayout.LayoutParams.MATCH_PARENT;
 
         //Variable Initialization
         userID = findViewById(R.id.user_ID);

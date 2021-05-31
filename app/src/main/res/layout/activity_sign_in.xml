@@ -30,7 +30,7 @@
             android:gravity="center"
             android:text="@string/the_movie_database"
             android:textColor="@color/colorWhite"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:drawableTopCompat="@drawable/ic_tmdb_small_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -39,15 +39,13 @@
 
         <Button
             android:id="@+id/sign_in_with_google"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="12dp"
             android:background="@drawable/bg_white_rounded48_filled"
             app:layout_constraintBottom_toTopOf="@id/sign_in_with_facebook"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="@id/login"
+            app:layout_constraintStart_toStartOf="@id/login" />
 
         <TextView
             android:id="@+id/txt_sign_in_with_google"
@@ -68,15 +66,13 @@
 
         <Button
             android:id="@+id/sign_in_with_facebook"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="12dp"
             android:background="@drawable/bg_white_rounded48_filled"
             app:layout_constraintBottom_toTopOf="@id/manual_sign_in"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="@id/login"
+            app:layout_constraintStart_toStartOf="@id/login" />
 
         <TextView
             android:id="@+id/txt_sign_in_with_facebook"
@@ -98,15 +94,13 @@
 
         <Button
             android:id="@+id/manual_sign_in"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="12dp"
             android:background="@drawable/bg_white_rounded48_filled"
             app:layout_constraintBottom_toTopOf="@id/login"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="@id/login"
+            app:layout_constraintStart_toStartOf="@id/login" />
 
         <TextView
             android:id="@+id/txt_tmdb_sign_in"

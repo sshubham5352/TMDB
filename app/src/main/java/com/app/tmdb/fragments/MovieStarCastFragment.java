@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -33,13 +34,13 @@ public class MovieStarCastFragment extends Fragment implements ApiResponseInterf
     //field declaration
     FragmentMovieStarCastBinding binding;
     MovieCreditsResponse movieCreditsResponse;
-    MovieDetailsPagerAdapter adapter;
+    MovieDetailsPagerAdapter pagerAdapter;
     ApiManager apiManager;
 
     // constructor
     public MovieStarCastFragment(MovieDetailsPagerAdapter adapter) {
         super();
-        this.adapter = adapter;
+        this.pagerAdapter = adapter;
     }
 
     @Nullable
@@ -58,6 +59,9 @@ public class MovieStarCastFragment extends Fragment implements ApiResponseInterf
                 RecyclerView.HORIZONTAL, false));
         binding.crewRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),
                 RecyclerView.HORIZONTAL, false));
+        //attaching SnapHelper
+        new LinearSnapHelper().attachToRecyclerView(binding.topBilledCastRecyclerView);
+        new LinearSnapHelper().attachToRecyclerView(binding.crewRecyclerView);
         // fetching data
         apiManager.getMovieCredits(getArguments().getLong(Constants.FRAGMENT_STAR_CAST_BUNDLE));
     }
@@ -140,7 +144,7 @@ public class MovieStarCastFragment extends Fragment implements ApiResponseInterf
         binding.rootLayout.post(new Runnable() {
             @Override
             public void run() {
-                adapter.setStarCastLayoutHeight(binding.rootLayout.getHeight());
+                pagerAdapter.setStarCastLayoutHeight(binding.rootLayout.getHeight());
             }
         });
     }

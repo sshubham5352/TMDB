@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.tmdb.R;
@@ -63,7 +64,6 @@ public class HomeFragment extends Fragment implements ApiResponseInterface, Movi
         if (trendingMovieResponse != null)
             return;
 
-
         setTags();
         fixLayout();
         trendingMovieResponse = new MovieResponse();
@@ -73,6 +73,11 @@ public class HomeFragment extends Fragment implements ApiResponseInterface, Movi
         binding.whatsPopularRecyclerView.setLayoutManager(new LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false));
         binding.topRatedRecyclerView.setLayoutManager(new LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false));
         binding.trendingRecyclerView.setLayoutManager(new LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false));
+        //attaching SnapHelper
+        new LinearSnapHelper().attachToRecyclerView(binding.trendingRecyclerView);
+        new LinearSnapHelper().attachToRecyclerView(binding.whatsPopularRecyclerView);
+        new LinearSnapHelper().attachToRecyclerView(binding.topRatedRecyclerView);
+        //API Manager
         apiManager = new ApiManager(mContext, this);
         apiManager.getTrendingResponse(Constants.TODAY, 1);
         apiManager.getPopularResponse(Constants.STREAMING, 1);
