@@ -34,6 +34,7 @@ public class ApiManager {
         isDataLoading = false;
     }
 
+
     public void getTrendingResponse(final String timeWindow, final int page) {
         if (page == 1)
             progressDialog.show();

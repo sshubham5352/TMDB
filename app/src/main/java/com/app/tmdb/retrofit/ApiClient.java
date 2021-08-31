@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
 
     //static fields
-        public static final String baseURL = "https://api.themoviedb.org/3/";
+    public static final String baseURL = "https://api.themoviedb.org/3/";
     public static Retrofit retrofit = null;
 
     public static Retrofit getClient() {
