@@ -14,6 +14,7 @@ public class Constants {
     public static final String IMG_BACKDROP_BASE_URL = "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces";
     public static final String IMG_BLUETONE_BASE_URL = "https://image.tmdb.org/t/p/w1066_and_h600_multi_faces_filter(duotone,032541,01b4e4)/";
     public static final String IMG_BLUETONE_BASE_URL_Portrait = "https://image.tmdb.org/t/p/w600_and_h900_multi_faces_filter(duotone,032541,01b4e4)/";
+    public static final String IMG_H60_BASE_URL = "https://www.themoviedb.org/t/p/h60/";
 
     //RETROFIT CONSTANTS
     public static final int TRENDING_RESPONSE = 1;
@@ -50,4 +51,5 @@ public class Constants {
 
     //LOG CONSTANTS
     public static final String LOG_MOVIES = "movies";
+    public static final String LOG_API_CALL = "API_CALL";
 }

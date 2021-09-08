@@ -83,13 +83,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
                 android:layout_marginTop="16dp"
-                android:ellipsize="end"
                 android:fontFamily="@font/source_sans_pro_bold"
                 android:maxLines="1"
                 android:text="@string/na"
                 android:textColor="@color/colorWhite"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@id/release_year"
                 app:layout_constraintStart_toEndOf="@id/poster_img_holder"
                 app:layout_constraintTop_toTopOf="@id/poster_img_holder" />
 
@@ -103,9 +101,7 @@
                 android:textColor="@color/colorWhite74"
                 android:textSize="18sp"
                 app:layout_constraintBaseline_toBaselineOf="@id/tv_show_title"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_show_title" />
-
 
             <TextView
                 android:id="@+id/genres"

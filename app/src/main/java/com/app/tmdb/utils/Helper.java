@@ -3,6 +3,7 @@ package com.app.tmdb.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.util.DisplayMetrics;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -24,6 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
+import static com.app.tmdb.utils.Constants.IMG_H60_BASE_URL;
 import static com.app.tmdb.utils.Constants.IMG_W500_BASE_URL;
 
 public class Helper {
@@ -188,6 +190,15 @@ public class Helper {
             imageView.setImageResource(R.drawable.image_not_available);
     }
 
+    public static void setH60Image(String imagePath, ImageView imageView) {
+        if (imagePath != null && imagePath.length() != 0)
+            Glide.with(imageView).load(IMG_H60_BASE_URL + imagePath)
+                    .apply(new RequestOptions().placeholder(R.drawable.placeholder_image_loading).error(R.drawable.image_not_available))
+                    .into(imageView);
+        else
+            imageView.setImageResource(R.drawable.image_not_available);
+    }
+
     public static void chooseUserScoreProgress(Context context, float voteAverage, ProgressBar progressBar, boolean setProgress) {
         if (setProgress)
             progressBar.setProgress((int) (voteAverage * 10));
@@ -340,4 +351,8 @@ public class Helper {
         return AnimationUtils.loadAnimation(context, R.anim.anim_slide_in);
     }
 
+    public static boolean isColorDark(int color) {
+        double darkness = 1 - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) / 255;
+        return (darkness > 0.5); // returns true if color is dark & false if not
+    }
 }

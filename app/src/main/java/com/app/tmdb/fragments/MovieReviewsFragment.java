@@ -55,6 +55,7 @@ public class MovieReviewsFragment extends Fragment implements ApiResponseInterfa
         // setting layoutManagers in RecyclerViews
         binding.reviewsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),
                 RecyclerView.VERTICAL, false));
+
         // fetching data
         apiManager.getMovieReviews(getArguments().getLong(Constants.FRAGMENT_REVIEWS_BUNDLE), currentPage);
     }

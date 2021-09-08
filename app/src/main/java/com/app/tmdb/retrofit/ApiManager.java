@@ -245,8 +245,7 @@ public class ApiManager {
 
             @Override
             public void onFailure(Call<TvShowDetailsResponse> call, Throwable t) {
-                Toast.makeText(mContext, "we have stuck here", Toast.LENGTH_SHORT).show();
-                mApiResponseInterface.apiCallFailure("Network Error");
+                mApiResponseInterface.apiCallFailure(t.getMessage());
             }
         });
     }

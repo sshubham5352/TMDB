@@ -7,12 +7,22 @@ public class TvShowDetailsResponse implements Serializable {
 
     boolean adult, video;
     int vote_count, number_of_episodes, number_of_seasons;
-    int[] episode_run_time;                                                                         // may cause error
+    int[] episode_run_time;
     long id;
     float vote_average;
-    String backdrop_path;
-    String poster_path;
-    String overview;
+    String original_name, name, backdrop_path, poster_path, overview, first_air_date, last_air_date,
+            type, tagline, status, original_language, imdb_id, homepage;
+    List<Creator> created_by;
+    List<MovieDetailsResponse.Genre> genres;
+    List<Season> seasons;
+    List<MovieDetailsResponse.Language> spoken_languages;
+    List<Network> networks;
+    List<MovieDetailsResponse.ProductionCompany> production_companies;
+    List<MovieDetailsResponse.ProductionCountry> production_countries;
+    MovieDetailsResponse.Collection belongs_to_collection;
+    Episode last_episode_to_air;
+    Episode next_episode_to_air;
+
 
     public boolean isAdult() {
         return adult;
@@ -138,30 +148,10 @@ public class TvShowDetailsResponse implements Serializable {
         return next_episode_to_air;
     }
 
-    String original_name;
-    String name;
-    String first_air_date;
-    String last_air_date;
-    String type;
-    String tagline;
-    String status;
-    String original_language;
-    String imdb_id;
-    String homepage;
-    List<Creator> created_by;
-    List<MovieDetailsResponse.Genre> genres;
-    List<Season> seasons;
-    List<MovieDetailsResponse.Language> spoken_languages;
-    List<Network> networks;
-    List<MovieDetailsResponse.ProductionCompany> production_companies;
-    List<MovieDetailsResponse.ProductionCountry> production_countries;
-    MovieDetailsResponse.Collection belongs_to_collection;
-    Episode last_episode_to_air;
-    Episode next_episode_to_air;
-
     public static class Creator implements Serializable {
         int gender;
-        long id, credit_id;
+        long id;
+        String credit_id;
 
         public int getGender() {
             return gender;
@@ -171,7 +161,7 @@ public class TvShowDetailsResponse implements Serializable {
             return id;
         }
 
-        public long getCredit_id() {
+        public String getCredit_id() {
             return credit_id;
         }
 

@@ -69,7 +69,7 @@ public class TvOverviewFragment extends Fragment {
         Helper.setText(mResponse.getName(), binding.tvShowTitle, true);
         //setting network
         try {
-            Helper.setW500Image(mResponse.getNetworks().get(0).getLogo_path(), binding.network);
+            Helper.setH60Image(mResponse.getNetworks().get(0).getLogo_path(), binding.network);
         } catch (Exception e) {
             binding.network.setVisibility(View.GONE);
             binding.txtNetwork.setVisibility(View.GONE);
@@ -88,7 +88,12 @@ public class TvOverviewFragment extends Fragment {
         //setting release date
         Helper.setDate(mResponse.getFirst_air_date(), null, binding.firstAirDate);
         //setting running time
-        Helper.setTimeDuration(mResponse.getEpisode_run_time()[0], binding.episodeDuration);
+        try {
+            Helper.setTimeDuration(mResponse.getEpisode_run_time()[0], binding.episodeDuration);
+        } catch (Exception e) {
+            //empty block
+        }
+
         //setting original language
         Helper.setOriginalLanguage(mResponse.getOriginal_language(), binding.originalLanguage, true);
         //passing height of the overview layout to the adapter

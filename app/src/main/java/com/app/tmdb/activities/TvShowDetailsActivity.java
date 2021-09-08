@@ -4,11 +4,11 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,8 +22,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.databinding.DataBindingUtil;
@@ -135,6 +133,7 @@ public class TvShowDetailsActivity extends AppCompatActivity implements ApiRespo
     @Override
     public void apiCallFailure(String errorCode) {
         binding.progressBar.setVisibility(View.GONE);
+        Log.d("API", "apiCallFailure: " + errorCode);
         Toast.makeText(this, errorCode, Toast.LENGTH_LONG).show();
         binding.gradientLayer1.setBackgroundColor(getResources().getColor(R.color.colorAppTheme));
     }
@@ -211,7 +210,7 @@ public class TvShowDetailsActivity extends AppCompatActivity implements ApiRespo
                 int colorDominant = palette.getDominantColor(defaultValue);
                 tabLayoutColor = palette.getVibrantColor(defaultValue);
 
-                if (!isColorDark(colorDominant))
+                if (!Helper.isColorDark(colorDominant))
                     colorDominant = palette.getDarkVibrantColor(defaultValue);
                 backgroundLayersColor = (colorDominant == 0) ? getResources().getColor(R.color.colorAppTheme) : colorDominant;
                 tabLayoutColor = (tabLayoutColor == 0) ? backgroundLayersColor : tabLayoutColor;
@@ -264,7 +263,8 @@ public class TvShowDetailsActivity extends AppCompatActivity implements ApiRespo
         setFadeInAnimation(binding.addToWatchlist);
         setFadeInAnimation(binding.rateIt);
         setFadeInAnimation(binding.tagLine);
-        //setting view visible
+        //setting views visible
+        binding.tvShowTitle.setVisibility(View.VISIBLE);
         binding.runningTime.setVisibility(View.VISIBLE);
         binding.userScore.setVisibility(View.VISIBLE);
         binding.txtUserScore.setVisibility(View.VISIBLE);
@@ -273,19 +273,19 @@ public class TvShowDetailsActivity extends AppCompatActivity implements ApiRespo
         binding.rateIt.setVisibility(View.VISIBLE);
         binding.tagLine.setVisibility(View.VISIBLE);
         //setting release date
+        Helper.setText(tvShowDetailsResponse.getName(), binding.tvShowTitle, false);
         if (tvShowDetailsResponse.getFirst_air_date() != null && tvShowDetailsResponse.getFirst_air_date().length() != 0)
             Helper.setTextInParentheses(tvShowDetailsResponse.getFirst_air_date().substring(0, 4), binding.releaseYear, false);
-        //setting title
-        Helper.setText(tvShowDetailsResponse.getName(), binding.tvShowTitle, false);
-        if (!isEllipsized()) {
-            binding.tvShowTitle.append(" ");
-            ConstraintSet set = new ConstraintSet();
-            ConstraintLayout layout = binding.rootLayout;
-            set.clone(layout);
-            set.clear(R.id.movie_title, ConstraintSet.END);
-            set.clear(R.id.release_year, ConstraintSet.END);
-            set.applyTo(layout);
-        }
+//        if (!isEllipsized()) {
+//            binding.tvShowTitle.append(" ");
+//            ConstraintSet set = new ConstraintSet();
+//            ConstraintLayout layout = binding.rootLayout;
+//            set.clone(layout);
+//            set.clear(R.id.movie_title, ConstraintSet.END);
+//            set.clear(R.id.release_year, ConstraintSet.END);
+//            set.applyTo(layout);
+//        }
+
         //setting genres
         try {
             String genre = tvShowDetailsResponse.getGenres().get(0).getName();
@@ -316,7 +316,11 @@ public class TvShowDetailsActivity extends AppCompatActivity implements ApiRespo
             binding.countryCode.setVisibility(View.VISIBLE);
         }
         //setting runningTime
-        Helper.setTimeDuration(tvShowDetailsResponse.getEpisode_run_time()[0], binding.runningTime);
+        try {
+            Helper.setTimeDuration(tvShowDetailsResponse.getEpisode_run_time()[0], binding.runningTime);
+        } catch (Exception e) {
+            // empty catch block
+        }
         //setting tagLine
         Helper.setText(tvShowDetailsResponse.getTagline(), binding.tagLine, false);
         //setting user score
@@ -357,11 +361,6 @@ public class TvShowDetailsActivity extends AppCompatActivity implements ApiRespo
             return true;
         } else
             return false;
-    }
-
-    private boolean isColorDark(int color) {
-        double darkness = 1 - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) / 255;
-        return (darkness > 0.5); // returns true if color is dark & false if not
     }
 
     public void openDialogOriginalImage(View view) {

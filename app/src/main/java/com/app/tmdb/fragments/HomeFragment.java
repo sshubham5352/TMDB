@@ -28,13 +28,17 @@ import com.app.tmdb.adapters.MoviesAdapter;
 import com.app.tmdb.adapters.MultiMediaSearchAdapter;
 import com.app.tmdb.databinding.FragmentHomeBinding;
 import com.app.tmdb.interfaces.MoviesAdapterListener;
+import com.app.tmdb.models.MediaTypes;
 import com.app.tmdb.models.MovieResponse;
 import com.app.tmdb.models.MultiMediaSearchResponse;
 import com.app.tmdb.retrofit.ApiManager;
 import com.app.tmdb.retrofit.ApiResponseInterface;
 import com.app.tmdb.utils.Constants;
 import com.app.tmdb.utils.Helper;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
+import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
+import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
 import com.squareup.picasso.Picasso;
 
 
@@ -63,6 +67,28 @@ public class HomeFragment extends Fragment implements ApiResponseInterface, Movi
         super.onViewCreated(view, savedInstanceState);
         if (trendingMovieResponse != null)
             return;
+
+//        setting refresh listener
+        binding.refreshLayout.setOnRefreshListener(new RefreshListenerAdapter() {
+            @Override
+            public void onRefresh(TwinklingRefreshLayout refreshLayout) {
+                super.onRefresh(refreshLayout);
+                binding.refreshLayout.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        setSearchContainerBackground();
+                        binding.trendingRecyclerView.smoothScrollToPosition(RecyclerView.SCROLLBAR_POSITION_DEFAULT);
+                        binding.whatsPopularRecyclerView.smoothScrollToPosition(RecyclerView.SCROLLBAR_POSITION_DEFAULT);
+                        binding.topRatedRecyclerView.smoothScrollToPosition(RecyclerView.SCROLLBAR_POSITION_DEFAULT);
+                        Snackbar.make(binding.getRoot(), "Refresh finished", Snackbar.LENGTH_LONG)
+                                .setAnchorView(requireActivity().findViewById(R.id.bottom_navigation))
+                                .show();
+
+                        binding.refreshLayout.finishRefreshing();
+                    }
+                }, 1500);
+            }
+        });
 
         setTags();
         fixLayout();
@@ -185,7 +211,6 @@ public class HomeFragment extends Fragment implements ApiResponseInterface, Movi
         }
     }
 
-
     private void setTags() {
         binding.trendingRecyclerView.setTag(Constants.TODAY);
         binding.whatsPopularRecyclerView.setTag(Constants.STREAMING);
@@ -246,14 +271,14 @@ public class HomeFragment extends Fragment implements ApiResponseInterface, Movi
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 binding.searchBar.getText().clear();
-                switch (multiSearchResponse.getResults().get(i).getMedia_type()) {
-                    case ("movie"):
-                        startMovieDetailsActivity(multiSearchResponse.getResults().get(i).getId());
-                        break;
-                    case ("tv"):
-                        startTvShowDetailsActivity(multiSearchResponse.getResults().get(i).getId());
-                        break;
-                }
+                String mediaType = multiSearchResponse.getResults().get(i).getMedia_type();
+
+                if (mediaType.matches(MediaTypes.movie.name()))
+                    startMovieDetailsActivity(multiSearchResponse.getResults().get(i).getId());
+                else if (mediaType.matches(MediaTypes.tv.name()))
+                    startTvShowDetailsActivity(multiSearchResponse.getResults().get(i).getId());
+                else if (mediaType.matches(MediaTypes.person.name()))
+                    return;
             }
         });
     }
@@ -362,6 +387,11 @@ public class HomeFragment extends Fragment implements ApiResponseInterface, Movi
     @Override
     public void showMovieDetails(long movie_id) {
         startMovieDetailsActivity(movie_id);
+    }
+
+    @Override
+    public void showTvShowDetails(long movie_id) {
+        startTvShowDetailsActivity(movie_id);
     }
 
 

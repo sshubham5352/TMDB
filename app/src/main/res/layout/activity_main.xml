@@ -24,13 +24,15 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/colorThinGray"
+        android:elevation="6dp"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground"
+        app:elevation="6dp"
         app:itemIconTint="@color/bottom_nav_color"
         app:itemTextColor="@color/colorLightBlue"
         app:layout_constraintBottom_toBottomOf="parent"

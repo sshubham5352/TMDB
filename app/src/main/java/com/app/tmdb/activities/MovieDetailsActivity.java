@@ -4,7 +4,6 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
@@ -211,7 +210,7 @@ public class MovieDetailsActivity extends AppCompatActivity implements ApiRespon
                 int colorDominant = palette.getDominantColor(defaultValue);
                 tabLayoutColor = palette.getVibrantColor(defaultValue);
 
-                if (!isColorDark(colorDominant))
+                if (!Helper.isColorDark(colorDominant))
                     colorDominant = palette.getDarkVibrantColor(defaultValue);
                 backgroundLayersColor = (colorDominant == 0) ? getResources().getColor(R.color.colorAppTheme) : colorDominant;
                 tabLayoutColor = (tabLayoutColor == 0) ? backgroundLayersColor : tabLayoutColor;
@@ -351,11 +350,6 @@ public class MovieDetailsActivity extends AppCompatActivity implements ApiRespon
             return true;
         } else
             return false;
-    }
-
-    private boolean isColorDark(int color) {
-        double darkness = 1 - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) / 255;
-        return (darkness > 0.5); // returns true if color is dark & false if not
     }
 
     public void openDialogOriginalImage(View view) {
